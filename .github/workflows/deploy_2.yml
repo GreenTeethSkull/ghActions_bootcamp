@@ -39,6 +39,15 @@ jobs:
             - name: print another value
               run: echo "${{ steps.step_save.outputs.myVariable }}"
 
+            - name: generar archivo
+              run: echo "Hola mundo" > archivo.log
+
+            - name: subir artefacto
+              uses: actions/upload-artifact@v4
+              with:
+                name: test-log
+                path: archivo.log
+
     second_job:
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push'  }}
         needs: first_job
@@ -50,7 +59,9 @@ jobs:
         steps:
             - name: Hola Mundo
               run: echo "Hola mundo"
+
             - name: Hola Mundo 2
               run: echo "Hola mundo 2"
+
             - name: Hola Mundo 3
               run: echo "Mi variable es ${SALIDA}"
