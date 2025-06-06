@@ -1,0 +1,14 @@
+name: "Clase 2"
+
+on: 
+    push:
+        branches:
+        - main
+
+jobs:
+    first_jobs:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: "Hola Mundo"
+                run: echo "Hola mundo"
