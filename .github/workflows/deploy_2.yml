@@ -10,6 +10,9 @@ jobs:
         name: "Mi primer job"
         runs-on: ubuntu-latest
 
+        outputs:
+            first_output: ${{ steps.step_save.outputs.myVariable }}
+
         env:
             NAME: "Codigo Facilito"
 
@@ -40,8 +43,14 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push'  }}
         needs: first_job
         runs-on: ubuntu-latest
+
+        env:
+            SALIDA: ${{ needs.first_job.outputs.first_output }}
+
         steps:
             - name: Hola Mundo
               run: echo "Hola mundo"
             - name: Hola Mundo 2
               run: echo "Hola mundo 2"
+            - name: Hola Mundo 3
+              run: echo "Mi variable es ${SALIDA}"
