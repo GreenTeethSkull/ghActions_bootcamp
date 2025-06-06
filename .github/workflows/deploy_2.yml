@@ -8,9 +8,13 @@ on:
 jobs:
     first_job:
         runs-on: ubuntu-latest
+
+        env:
+            NAME: "Codigo Facilito"
+
         steps:
             - name: Hola Mundo
-              run: echo "Hola mundo"
+              run: echo "Hola mundo" ${env.NAME}
 
     second_job:
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push'  }}
