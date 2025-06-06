@@ -65,3 +65,11 @@ jobs:
 
             - name: Hola Mundo 3
               run: echo "Mi variable es ${SALIDA}"
+
+            - name: Descargar artefacto
+              uses: actions/download-artifact@v4
+              with:
+                name: test-log
+
+            - name: Imprimir contenido del archivo
+              run: cat archivo.log
