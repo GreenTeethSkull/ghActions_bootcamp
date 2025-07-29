@@ -6,8 +6,8 @@ on:
             test_suite:
                 description: Test suite
                 type: choice
-                value: functional
                 options:
+                    - functional
                     - regression
 
 jobs:
@@ -18,5 +18,7 @@ jobs:
             - run: echo "Correr migraciones"
             - run: echo "Correr pruebas"
             - run: echo "Correr comandos de produccion"
-            - run: echo "Test suite: ${{ inputs.test_suite }}"
+            - name: Echo test suite
+              run: |
+                echo "Test suite: ${{ inputs.test_suite }}"
 
